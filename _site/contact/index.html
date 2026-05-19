@@ -70,7 +70,7 @@
       <div class="contact-item__icon">✉</div>
       <div class="contact-item__body">
         <h4>Email</h4>
-        <a href="mailto:drkpillai@thefountaingroup.org">drkpillai@thefountaingroup.org</a>
+        <a href="mailto:kseniapillai@gmail.com">kseniapillai@gmail.com</a>
         <p style="color:var(--neutral-500);font-size:.85rem;margin-top:.25rem">We typically respond within one business day.</p>
       </div>
     </div>
@@ -116,6 +116,64 @@
         <h4>Telehealth Sessions</h4>
         <p>All appointment types are available via HIPAA-compliant secure video. Complete privacy and security guaranteed.</p>
         <p style="color:var(--neutral-500);font-size:.85rem;margin-top:.25rem">Available nationwide.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contact Form -->
+  <div class="fade-up" style="grid-column: 1 / -1; margin-top: -1rem;">
+    <div class="booking-form-card" id="contactFormCard" style="max-width: 720px; margin-inline: auto;">
+      <div class="section-label" style="margin-bottom:1.5rem">Send Us a Message</div>
+
+      <form id="contactForm" novalidate>
+        <!-- FormSubmit hidden fields -->
+        <input type="hidden" name="_subject" value="New contact message — The Fountain Group">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="contactFirstName">First Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="contactFirstName" name="firstName" autocomplete="given-name" required placeholder="Your first name" />
+            <div class="error-msg" role="alert">Please enter your first name.</div>
+          </div>
+          <div class="form-group">
+            <label for="contactLastName">Last Name <span aria-hidden="true">*</span></label>
+            <input type="text" id="contactLastName" name="lastName" autocomplete="family-name" required placeholder="Your last name" />
+            <div class="error-msg" role="alert">Please enter your last name.</div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="contactEmail">Email Address <span aria-hidden="true">*</span></label>
+          <input type="email" id="contactEmail" name="email" autocomplete="email" required placeholder="you@example.com" />
+          <div class="error-msg" role="alert">Please enter a valid email address.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="contactPhone">Phone Number</label>
+          <input type="tel" id="contactPhone" name="phone" autocomplete="tel" placeholder="+1 (415) 000-0000" />
+        </div>
+
+        <div class="form-group">
+          <label for="contactMessage">Message <span aria-hidden="true">*</span></label>
+          <textarea id="contactMessage" name="message" required placeholder="How can we help you?"></textarea>
+          <div class="error-msg" role="alert">Please enter your message.</div>
+        </div>
+
+        <div style="background:var(--neutral-100);border-radius:var(--radius-md);padding:1rem;margin-bottom:1rem;font-size:.8rem;color:var(--neutral-500);line-height:1.6;">
+          ✦ Your information is held in strict confidence. HIPAA-compliant. We do not share it with third parties.
+        </div>
+
+        <button type="submit" class="btn btn--primary form-submit">Send Message</button>
+      </form>
+
+      <!-- Success State (same animation as booking page) -->
+      <div class="booking-success" id="contactSuccess">
+        <div class="booking-success__icon">✓</div>
+        <h3>Message received</h3>
+        <p style="margin-bottom:.75rem;">Thank you for reaching out. We'll get back to you within one business day.</p>
+        <p>For urgent matters, please call us at <a href="tel:+14159800186" style="color:var(--green-700)">(415) 980-0186</a>.</p>
       </div>
     </div>
   </div>
@@ -267,7 +325,7 @@
       <div class="footer__col">
         <h5>Contact</h5>
         <ul>
-          <li><a href="mailto:drkpillai@thefountaingroup.org">drkpillai@thefountaingroup.org</a></li>
+          <li><a href="mailto:kseniapillai@gmail.com">kseniapillai@gmail.com</a></li>
           <li><a href="tel:+14159800186">(415) 980-0186</a></li>
           <li>Mon–Sun, 8am–9pm</li>
         </ul>
