@@ -44,10 +44,9 @@ if (fadeEls.length) {
   fadeEls.forEach(el => observer.observe(el));
 }
 
-// --- BOOKING FORM (AJAX) ---
+// --- BOOKING FORM (AJAX via FormSubmit) ---
 const bookingForm = document.getElementById('bookingForm');
 const bookingSuccess = document.getElementById('bookingSuccess');
-const bookingFormCard = document.getElementById('bookingFormCard');
 
 if (bookingForm) {
   bookingForm.addEventListener('submit', async (e) => {
@@ -79,74 +78,11 @@ if (bookingForm) {
 
     if (!valid) return;
 
-    // Simulate AJAX submission
     const submitBtn = bookingForm.querySelector('[type="submit"]');
     submitBtn.textContent = 'Sending…';
     submitBtn.disabled = true;
 
-    await new Promise(r => setTimeout(r, 1400));
-
-    // Show success
-    bookingForm.style.display = 'none';
-    if (bookingSuccess) {
-      bookingSuccess.classList.add('show');
-    }
-  });
-
-  // Live validation on input
-  bookingForm.querySelectorAll('input, select, textarea').forEach(field => {
-    field.addEventListener('input', () => {
-      if (field.value.trim()) {
-        field.classList.remove('error');
-        const err = field.parentElement.querySelector('.error-msg');
-        if (err) err.classList.remove('show');
-      }
-    });
-  });
-}
-
-// --- CONTACT FORM (AJAX via FormSubmit) ---
-const contactForm = document.getElementById('contactForm');
-const contactSuccess = document.getElementById('contactSuccess');
-const contactFormCard = document.getElementById('contactFormCard');
-
-if (contactForm) {
-  contactForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-
-    // Validate required fields
-    let valid = true;
-    const fields = contactForm.querySelectorAll('[required]');
-    fields.forEach(field => {
-      const error = field.parentElement.querySelector('.error-msg');
-      if (!field.value.trim()) {
-        field.classList.add('error');
-        if (error) error.classList.add('show');
-        valid = false;
-      } else {
-        field.classList.remove('error');
-        if (error) error.classList.remove('show');
-      }
-    });
-
-    // Email validation
-    const emailField = contactForm.querySelector('[type="email"]');
-    if (emailField && emailField.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailField.value)) {
-      emailField.classList.add('error');
-      const err = emailField.parentElement.querySelector('.error-msg');
-      if (err) { err.textContent = 'Please enter a valid email address.'; err.classList.add('show'); }
-      valid = false;
-    }
-
-    if (!valid) return;
-
-    // Update button state
-    const submitBtn = contactForm.querySelector('[type="submit"]');
-    submitBtn.textContent = 'Sending…';
-    submitBtn.disabled = true;
-
-    // Build FormData and submit via AJAX to FormSubmit
-    const formData = new FormData(contactForm);
+    const formData = new FormData(bookingForm);
 
     try {
       const response = await fetch('https://formsubmit.co/ajax/kseniapillai@gmail.com', {
@@ -156,25 +92,22 @@ if (contactForm) {
       });
 
       if (response.ok) {
-        // Show success animation (same as booking page)
-        contactForm.style.display = 'none';
-        if (contactSuccess) {
-          contactSuccess.classList.add('show');
-        }
+        bookingForm.style.display = 'none';
+        if (bookingSuccess) bookingSuccess.classList.add('show');
       } else {
-        submitBtn.textContent = 'Send Message';
+        submitBtn.textContent = 'Request Appointment';
         submitBtn.disabled = false;
         alert('Something went wrong. Please try again or contact us directly.');
       }
     } catch (err) {
-      submitBtn.textContent = 'Send Message';
+      submitBtn.textContent = 'Request Appointment';
       submitBtn.disabled = false;
       alert('Connection error. Please check your internet connection and try again.');
     }
   });
 
   // Live validation on input
-  contactForm.querySelectorAll('input, textarea').forEach(field => {
+  bookingForm.querySelectorAll('input, select, textarea').forEach(field => {
     field.addEventListener('input', () => {
       if (field.value.trim()) {
         field.classList.remove('error');
